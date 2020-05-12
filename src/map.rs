@@ -1,4 +1,4 @@
-use crate::{error::Error, layer, metadata, tileset};
+use crate::{error::Error, layer, metadata, tileset, object};
 
 use serde::Deserialize;
 use serde_aux::field_attributes::deserialize_bool_from_anything;
@@ -60,7 +60,7 @@ pub enum RenderOrder {
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq)]
-pub struct Tileset {
+pub struct TilesetRef {
     /// The first global tile ID of this tileset (this global ID maps to the first tile in this tileset).
     #[serde(
         deserialize_with = "deserialize_number_from_string",
@@ -136,7 +136,9 @@ pub struct Map {
     #[serde(alias = "layer")]
     pub layers: Vec<layer::Layer>,
     #[serde(alias = "tileset")]
-    pub tilesets: Vec<Tileset>,
+    pub tilesets: Vec<TilesetRef>,
+    #[serde(alias = "objectgroup")]
+    pub object_layers: Vec<object::ObjectLayer>,
 }
 
 impl Map {

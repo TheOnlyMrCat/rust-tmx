@@ -1,4 +1,4 @@
-use crate::{error::Error, metadata};
+use crate::{error::Error, metadata, object};
 
 use serde::{de::Deserializer, Deserialize};
 use serde_aux::field_attributes::deserialize_number_from_string;
@@ -83,7 +83,13 @@ pub struct Tile {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub id: u32,
     /// The type of the tile. Refers to an object type and is used by tile objects. (optional) (since 1.0)
+    #[serde(default)]
     pub r#type: String,
+    /// The image of the tile, if the tileset is a collection of images
+    #[serde(flatten)]
+    pub image: Option<Image>,
+    #[serde(rename = "objectgroup")]
+    pub objects: Option<object::ObjectLayer>
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq)]
@@ -123,8 +129,8 @@ pub struct Tileset {
     pub background_color: Option<String>,
     // tileoffset
     // grid
-    #[serde(flatten)]
-    pub image: Image,
+    #[serde(default, flatten)]
+    pub image: Option<Image>,
     // terrainttypes
     #[serde(alias = "tile", default)]
     pub tiles: Vec<Tile>,

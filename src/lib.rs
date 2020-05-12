@@ -9,6 +9,7 @@ pub mod layer;
 pub mod map;
 pub mod metadata;
 pub mod tileset;
+pub mod object;
 
 pub use map::Map;
 pub use tileset::Tileset;
