@@ -93,7 +93,7 @@ where
     deserializer.deserialize_string(PointListVisitor)
 }
 
-pub fn deserialize_int_from_float_string<'de, D>(deserializer: D) -> Result<i32, D::Error>
+fn deserialize_int_from_float_string<'de, D>(deserializer: D) -> Result<i32, D::Error>
 where
     D: Deserializer<'de>,
 {

@@ -5,14 +5,36 @@
 [![Docs](https://docs.rs/tmx/badge.svg)](https://docs.rs/tmx)
 [![License](https://img.shields.io/crates/l/tmx.svg)](https://github.com/theonlymrcat/rust-tmx/blob/master/LICENSE)
 
-**This is a fork of [adtennant/rust-tmx](https://github.com/adtennant/rust-tmx). The above links to crates.io, docs.rs, and the code to add the library to your project refer to the base repository, not mine.**
-
 TMX is a library for loading [Tiled](https://mapeditor.org) (XML and JSON) maps in Rust.
+
+## Disclaimer
+
+**This is a fork of [adtennant/rust-tmx](https://github.com/adtennant/rust-tmx). The above links to crates.io and docs.rs refer to the base repository, not my fork.**
+
+To generate documentation, run `cargo doc` and open the generated `target/doc/tmx/index.html` in your browser. No textual documentation exists for
+object groups or objects, but it will tell you data fields' types and names.
 
 ## Usage
 
+### Base repository
+
 ```bash
 cargo add tmx
+```
+
+### This fork
+
+Clone this repository to a folder named `tmx` (or something else, if you know what you're doing) in the root of your project
+
+```bash
+git clone https://github.com/TheOnlyMrCat/rust-tmx.git tmx
+```
+
+Then add the following to your `Cargo.toml`:
+
+```toml
+[dependencies]
+tmx = { path = "tmx" }
 ```
 
 ## Examples
