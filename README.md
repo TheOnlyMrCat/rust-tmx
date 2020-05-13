@@ -1,9 +1,11 @@
 # TMX
 
-[![Build Status](https://api.travis-ci.org/adtennant/rust-tmx.svg?branch=master)](https://travis-ci.org/adtennant/rust-tmx)
+![Build Status](https://img.shields.io/github/workflow/status/theonlymrcat/rust-tmx/build)
 [![Crates.io](https://img.shields.io/crates/v/tmx.svg)](https://crates.io/crates/tmx)
 [![Docs](https://docs.rs/tmx/badge.svg)](https://docs.rs/tmx)
-[![License](https://img.shields.io/crates/l/tmx.svg)](https://github.com/adtennant/rust-tmx/blob/master/LICENSE)
+[![License](https://img.shields.io/crates/l/tmx.svg)](https://github.com/theonlymrcat/rust-tmx/blob/master/LICENSE)
+
+**This is a fork of [adtennant/rust-tmx](https://github.com/adtennant/rust-tmx). The above links to crates.io, docs.rs, and the code to add the library to your project refer to the base repository, not mine.**
 
 TMX is a library for loading [Tiled](https://mapeditor.org) (XML and JSON) maps in Rust.
 
@@ -73,19 +75,21 @@ See the [docs](https://docs.rs/tmx) for more information.
 
 ## TMX Map Format Support
 
+Items in **bold** were implemented by this fork. Items in *italics* were partially implemented by this fork
+
 | Element            | Support |
 | ------------------ | ------- |
 | `<map>`            | Full    |
 | `<editorsettings>` | None    |
 | - `<chunksize>`    | None    |
 | - `<export>`       | None    |
-| `<tileset>`        | Partial |
+| `<tileset>`        | *Partial* |
 | - `<tileoffset>`   | None    |
 | - `<grid>`         | None    |
 | - `<image>`        | Full    |
 | - `<terraintypes>` | None    |
 | - - `<terrain>`    | None    |
-| - `<tile>`         | Partial |
+| - `<tile>`         | *Partial* |
 | - - `<animation>`  | None    |
 | - `<wangsets>`     | None    |
 | - - `<wangset>`    | None    |
@@ -93,12 +97,12 @@ See the [docs](https://docs.rs/tmx) for more information.
 | - `<data>`         | Full    |
 | - `<chunk>`        | Full    |
 | - `<tile>`         | Full    |
-| `<objectgroup>`    | None    |
-| - `<object>`       | None    |
-| - `<ellipse>`      | None    |
-| - `<point>`        | None    |
-| - `<polygon>`      | None    |
-| - `<polyline>`     | None    |
+| `<objectgroup>`    | **Partial** |
+| - `<object>`       | **Partial** |
+| - `<ellipse>`      | **Full**    |
+| - `<point>`        | **Full**    |
+| - `<polygon>`      | **Full**    |
+| - `<polyline>`     | **Full**    |
 | - `<text>`         | None    |
 | `<imagelayer>`     | None    |
 | `<group>`          | None    |
