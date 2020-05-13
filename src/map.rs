@@ -1,4 +1,4 @@
-use crate::{error::Error, layer, metadata, tileset, object};
+use crate::{error::Error, layer, metadata, object, tileset};
 
 use serde::Deserialize;
 use serde_aux::field_attributes::deserialize_bool_from_anything;
@@ -137,7 +137,7 @@ pub struct Map {
     pub layers: Vec<layer::Layer>,
     #[serde(alias = "tileset")]
     pub tilesets: Vec<TilesetRef>,
-    #[serde(alias = "objectgroup")]
+    #[serde(alias = "objectgroup", default)]
     pub object_layers: Vec<object::ObjectLayer>,
 }
 

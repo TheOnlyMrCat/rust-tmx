@@ -89,7 +89,7 @@ pub struct Tile {
     #[serde(flatten)]
     pub image: Option<Image>,
     #[serde(rename = "objectgroup")]
-    pub objects: Option<object::ObjectLayer>
+    pub objects: Option<object::ObjectLayer>,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq)]
