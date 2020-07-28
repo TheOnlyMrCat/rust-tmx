@@ -1,5 +1,5 @@
 use serde::{de::Deserializer, Deserialize};
-use serde_aux::field_attributes::{deserialize_number_from_string,deserialize_bool_from_anything};
+use serde_aux::field_attributes::{deserialize_bool_from_anything, deserialize_number_from_string};
 
 fn parse_csv(value: String) -> Result<Vec<Tile>, String> {
     Ok(value
@@ -351,7 +351,10 @@ pub struct Layer {
     /// The height of the layer in tiles. Always the same as the map height for fixed-size maps.
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub height: i32,
-    #[serde(default = "default_visible", deserialize_with = "deserialize_bool_from_anything")]
+    #[serde(
+        default = "default_visible",
+        deserialize_with = "deserialize_bool_from_anything"
+    )]
     pub visible: bool,
     #[serde(default)]
     pub locked: bool,

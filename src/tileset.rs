@@ -2,6 +2,7 @@ use crate::{error::Error, metadata, object};
 
 use serde::{de::Deserializer, Deserialize};
 use serde_aux::field_attributes::deserialize_number_from_string;
+use std::time::Duration;
 
 #[derive(Clone, Debug, Eq, Hash, PartialEq)]
 pub struct Image {
@@ -77,6 +78,47 @@ impl<'de> Deserialize<'de> for Image {
     }
 }
 
+fn deserialize_milliseconds_from_string<'de, D>(deserializer: D) -> Result<Duration, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let millis = deserialize_number_from_string::<u64, D>(deserializer)?;
+    Ok(Duration::from_millis(millis))
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq)]
+pub struct Frame {
+    /// The local ID of a tile within the parent <tileset>.
+    #[serde(deserialize_with = "deserialize_number_from_string")]
+    pub tileid: u32,
+    /// How long (in milliseconds) this frame should be displayed before advancing to the next frame.
+    #[serde(deserialize_with = "deserialize_milliseconds_from_string")]
+    pub duration: Duration,
+}
+
+fn deserialize_animation<'de, D>(deserializer: D) -> Result<Vec<Frame>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    #[derive(Deserialize)]
+    struct Animation {
+        #[serde(alias = "frame", default)]
+        frames: Vec<Frame>,
+    }
+
+    #[derive(Deserialize)]
+    #[serde(untagged)]
+    enum Animations {
+        JSON(Vec<Frame>),
+        XML(Vec<Animation>),
+    }
+
+    match Animations::deserialize(deserializer)? {
+        Animations::XML(animations) => Ok(animations[0].frames.clone()),
+        Animations::JSON(frames) => Ok(frames),
+    }
+}
+
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq)]
 pub struct Tile {
     /// The local tile ID within its tileset.
@@ -90,6 +132,11 @@ pub struct Tile {
     pub image: Option<Image>,
     #[serde(rename = "objectgroup")]
     pub objects: Option<object::ObjectLayer>,
+    /// Contains a list of animation frames.
+    ///
+    /// Each tile can have exactly one animation associated with it. In the future, there could be support for multiple named animations on a tile.
+    #[serde(deserialize_with = "deserialize_animation", default)]
+    pub animation: Vec<Frame>,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq)]

@@ -1,40 +1,16 @@
 # TMX
 
-![Build Status](https://img.shields.io/github/workflow/status/theonlymrcat/rust-tmx/build)
+![Build Status](https://img.shields.io/github/workflow/status/adtennant/rust-tmx/build)
 [![Crates.io](https://img.shields.io/crates/v/tmx.svg)](https://crates.io/crates/tmx)
 [![Docs](https://docs.rs/tmx/badge.svg)](https://docs.rs/tmx)
-[![License](https://img.shields.io/crates/l/tmx.svg)](https://github.com/theonlymrcat/rust-tmx/blob/master/LICENSE)
+[![License](https://img.shields.io/crates/l/tmx.svg)](https://github.com/adtennant/rust-tmx/blob/master/LICENSE)
 
 TMX is a library for loading [Tiled](https://mapeditor.org) (XML and JSON) maps in Rust.
 
-## Disclaimer
-
-**This is a fork of [adtennant/rust-tmx](https://github.com/adtennant/rust-tmx). The above links to crates.io and docs.rs refer to the base repository, not my fork.**
-
-To generate documentation, run `cargo doc` and open the generated `target/doc/tmx/index.html` in your browser. No textual documentation exists for
-object groups or objects, but it will tell you data fields' types and names.
-
 ## Usage
-
-### Base repository
 
 ```bash
 cargo add tmx
-```
-
-### This fork
-
-Clone this repository to a folder named `tmx` (or something else, if you know what you're doing) in the root of your project
-
-```bash
-git clone https://github.com/TheOnlyMrCat/rust-tmx.git tmx
-```
-
-Then add the following to your `Cargo.toml`:
-
-```toml
-[dependencies]
-tmx = { path = "tmx" }
 ```
 
 ## Examples
@@ -97,39 +73,37 @@ See the [docs](https://docs.rs/tmx) for more information.
 
 ## TMX Map Format Support
 
-Items in **bold** were implemented by this fork. Items in *italics* were partially implemented by this fork
-
-| Element            | Support |
-| ------------------ | ------- |
-| `<map>`            | Full    |
-| `<editorsettings>` | None    |
-| - `<chunksize>`    | None    |
-| - `<export>`       | None    |
-| `<tileset>`        | *Partial* |
-| - `<tileoffset>`   | None    |
-| - `<grid>`         | None    |
-| - `<image>`        | Full    |
-| - `<terraintypes>` | None    |
-| - - `<terrain>`    | None    |
-| - `<tile>`         | *Partial* |
-| - - `<animation>`  | None    |
-| - `<wangsets>`     | None    |
-| - - `<wangset>`    | None    |
-| `<layer>`          | Full    |
-| - `<data>`         | Full    |
-| - `<chunk>`        | Full    |
-| - `<tile>`         | Full    |
-| `<objectgroup>`    | **Partial** |
-| - `<object>`       | **Partial** |
-| - `<ellipse>`      | **Full**    |
-| - `<point>`        | **Full**    |
-| - `<polygon>`      | **Full**    |
-| - `<polyline>`     | **Full**    |
-| - `<text>`         | None    |
-| `<imagelayer>`     | None    |
-| `<group>`          | None    |
-| `<properties>`     | None    |
-| - `<property>`     | None    |
+| Element            | Support    |
+| ------------------ | ---------- |
+| `<map>`            | ✅ Full    |
+| `<editorsettings>` | 🛑 None    |
+| - `<chunksize>`    | 🛑 None    |
+| - `<export>`       | 🛑 None    |
+| `<tileset>`        | ⚠️ Partial |
+| - `<tileoffset>`   | 🛑 None    |
+| - `<grid>`         | 🛑 None    |
+| - `<image>`        | ✅ Full    |
+| - `<terraintypes>` | 🛑 None    |
+| - - `<terrain>`    | 🛑 None    |
+| - `<tile>`         | ✅ Full    |
+| - - `<animation>`  | ✅ Full    |
+| - `<wangsets>`     | 🛑 None    |
+| - - `<wangset>`    | 🛑 None    |
+| `<layer>`          | ✅ Full    |
+| - `<data>`         | ✅ Full    |
+| - `<chunk>`        | ✅ Full    |
+| - `<tile>`         | ✅ Full    |
+| `<objectgroup>`    | ⚠️ Partial |
+| - `<object>`       | ⚠️ Partial |
+| - `<ellipse>`      | ✅ Full    |
+| - `<point>`        | ✅ Full    |
+| - `<polygon>`      | ✅ Full    |
+| - `<polyline>`     | ✅ Full    |
+| - `<text>`         | 🛑 None    |
+| `<imagelayer>`     | 🛑 None    |
+| `<group>`          | 🛑 None    |
+| `<properties>`     | 🛑 None    |
+| - `<property>`     | 🛑 None    |
 
 ## Features
 
